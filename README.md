@@ -38,15 +38,14 @@ or Create a new account.
 5. View all purchases and customer information
 6. Monitor sales statistics
 
-## GDPR Compliance ✅
+## GDPR Compliance 
 - Privacy Policy link is included in the site footer: `app/views/layout/footer.php` (add your full policy text there).
 - User deletion is implemented in `app/src/Models/User.php` (delete method) and related data (purchases, reviews, sessions) are removed via DB cascades: see `app/database/schema.sql` (ON DELETE CASCADE).
 - Sessions and session cookies are explicitly destroyed on logout: `app/src/Middleware/Auth.php` (session and cookie cleanup).
 
-## WCAG / Accessibility Efforts ♿️
+## WCAG / Accessibility Efforts 
 - Images include descriptive `alt` attributes using the game title: `app/views/client/home.php`, `app/views/client/game-details.php`.
 - Form elements have explicit `<label for="...">` bindings to improve keyboard/assistive-device usability: `app/views/client/payment.php`.
 - Navigation and interactive elements use semantic roles and attributes (e.g., `role="button"` in `app/views/layout/header.php`).
-- Input sanitization and CSRF protection reduce risks with user-submitted data: see `app/src/Middleware/Sanitizer.php` and `app/src/Middleware/CSRF.php`.
 
 
