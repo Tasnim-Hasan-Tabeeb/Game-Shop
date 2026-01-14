@@ -9,12 +9,6 @@ Icon?
 .idea/
 *.iml
 
-# Composer
-composer.phar
-/vendor/
-/app/vendor/
-/vendor-bin/**/vendor/
-
 # Environment files (keep example files tracked)
 .env
 .env.*
