@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 14, 2026 at 09:31 AM
+-- Generation Time: Jan 14, 2026 at 01:14 PM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.25
 
@@ -54,20 +54,6 @@ INSERT INTO `games` (`id`, `title`, `description`, `price`, `image_url`, `downlo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `expires_at` timestamp NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `purchases`
 --
 
@@ -86,7 +72,8 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `user_id`, `game_id`, `purchase_date`, `amount`, `payment_status`, `transaction_id`) VALUES
-(1, 2, 3, '2026-01-14 09:18:35', 59.99, 'completed', 'TXN_69675f6bc6e08_1768382315');
+(1, 2, 3, '2026-01-14 09:18:35', 59.99, 'completed', 'TXN_69675f6bc6e08_1768382315'),
+(2, 1, 1, '2026-01-14 09:59:24', 59.99, 'pending', 'TXN_696768fcaedaa_1768384764');
 
 -- --------------------------------------------------------
 
@@ -146,7 +133,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gameshop.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '2026-01-13 10:04:26', '2026-01-13 10:04:26'),
-(2, 'Tabeeb', 'tabeeb788@gmail.com', '$2y$12$WAl1OsWrZuRTfK.6yPYYVOCGL9VbMv2gLJVy55sGgbFXB2WwauDf6', 'client', '2026-01-13 10:12:10', '2026-01-13 10:49:09');
+(2, 'Tabeeb1', 'tabeeb788@gmail.com', '$2y$12$WAl1OsWrZuRTfK.6yPYYVOCGL9VbMv2gLJVy55sGgbFXB2WwauDf6', 'client', '2026-01-13 10:12:10', '2026-01-14 10:18:55');
 
 --
 -- Indexes for dumped tables
@@ -160,15 +147,6 @@ ALTER TABLE `games`
   ADD KEY `idx_title` (`title`),
   ADD KEY `idx_price` (`price`),
   ADD KEY `idx_is_active` (`is_active`);
-
---
--- Indexes for table `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `idx_token` (`token`),
-  ADD KEY `idx_expires_at` (`expires_at`);
 
 --
 -- Indexes for table `purchases`
@@ -218,16 +196,10 @@ ALTER TABLE `games`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -244,12 +216,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD CONSTRAINT `password_reset_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `purchases`
